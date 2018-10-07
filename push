@@ -78,12 +78,16 @@ CreateRepository () {
     if [ ! -d ".git" ]; then
         CreateLocalRepository
         CreateRemoteRepository
+    else
+        SetGitUser
     fi
 }
 CreateLocalRepository () {
     echo "ローカル・リポジトリを作成します。"
     git init
-
+    SetGitUser
+}
+SetGitUser () {
     # リポジトリごとにユーザ名とメアドを設定する
     git config --global user.useConfigOnly true
     git config --global --unset user.name
